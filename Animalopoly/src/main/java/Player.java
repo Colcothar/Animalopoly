@@ -13,6 +13,7 @@ public class Player {
     //Initiailise class 
     public Player (int playerID){
         this.playerID = playerID;
+        this.money = 500;
         this.position = 0;
         this.missTurn = 2;
         this.bankrupt = 1;
@@ -30,13 +31,6 @@ public class Player {
     public void adjustMoney(double amount){money += amount;} //Add and remove money (negative val for remove)
     
     //Getters
-    public double getMoney(){return money;}
-    public String getName(){return name;}
-    public String getPiece(){return piece;}
-    public int getPlayerID(){return playerID;}
-    public int getPosition(){return position;}
-    public int getMissTurn(){return missTurn;}
-    public int getBankrupt(){return bankrupt;}
     public int getMoney(){
         return money;
     }
@@ -60,9 +54,10 @@ public class Player {
     }
     
     //Setters
-    public void setPosition(int pos){position = pos;}
-    public void setMissTurn(){missTurn = 2;}
-    public void setBankrupt(){bankrupt = 0;}
+    public void addMoney(int add){
+        money = money + add;
+    }
+    
     public void setPosition(int pos){
         position = pos;
     }
@@ -72,4 +67,9 @@ public class Player {
     public void setBankrupt(){
         bankrupt = 0;}
     
+    public void missTurn(){
+        if(missTurn>0){
+            missTurn--;
+        }
+    }
 }
