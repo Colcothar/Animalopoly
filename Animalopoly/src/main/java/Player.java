@@ -1,9 +1,9 @@
-
 import java.util.Scanner; 
 
 /**
  * @author alexm
  */
+
 public class Player {
     //Initialise variables
     private final String name, piece;
