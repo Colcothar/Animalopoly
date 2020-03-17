@@ -20,23 +20,27 @@ public class Game {
         this.animal=animal;         
         this.player=player;
     } 
+
+
     
     public int numOfPlayer(){ //asks how many player in the game 
         int numOfPlayers = 0;
         do{ 
-            System.out.println("How many players, max of 8, min of 4?");
+            System.out.println("How many players, max of 8, min of 2?");
             numOfPlayers = Integer.parseInt(reader.nextLine());
-        }while (( numOfPlayers<4)||( numOfPlayers>8));
+        }while (( numOfPlayers<1)||( numOfPlayers>8));
         return numOfPlayers;
   
     }
     
-    public void move(int playerID){
+    public void move(int playerID, int roll){
         int temp=0, money =0, noAnimal=0,square=0, owner;
 
         System.out.println("Press enter to roll");
         
-        temp = player.get(playerID).getPosition() + dice.roll();
+        temp = player.get(playerID).getPosition() + roll;
+        
+        System.out.println(temp);
         
         money = checkSquare(temp, playerID); //checks if passed start. Works out the money given
         player.get(playerID).addMoney(money); // adds the money given to player.
@@ -45,7 +49,7 @@ public class Game {
         
         
         
-        noAnimal=CheckForAnimal(playerID); //checks if the player is on a miss turn or star
+        noAnimal=CheckForAnimal(playerID); //checks if the player is on a miss turn or start
         
         
         if(noAnimal==1){
@@ -58,10 +62,49 @@ public class Game {
             
             if(owner==playerID){
                 System.out.println("You are the proud owner of " + animal.get(square).getAnimal());
+                upgrade(square, playerID);
+            }
+            else if(owner==-1){
+                //code to buy animal
+                //set new owner
+                //take money 
+                
+            }
+            else{
+                //pay who ever owns the animal 
             }
             
             
         }        
+    }
+    
+    public void upgrade(int square, int playerID){
+        int money =0, upgradeCost=0;
+        String input="";
+                
+        
+        money = player.get(playerID).getMoney();
+        upgradeCost = animal.get(square).getCost();
+        
+        System.out.println("Cash: £" + money);
+        System.out.println("It costs £" + upgradeCost + " to upgrade");
+        
+        
+
+        if(animal.get(square).getStopLevel()<3){
+            System.out.println("Would you like to upgrade? y,n: ");
+            input = reader.nextLine();
+            if(input.equals("y")){
+                if((money-upgradeCost)<0){
+                    System.out.println("You do not have sufficent funds to upgrade");
+                }
+                else{
+                    player.get(playerID).addMoney(-upgradeCost);
+                    animal.get(square).upgrade();
+                }
+            }
+            
+        }
     }
     
     public int CheckForAnimal(int playerID){
@@ -111,5 +154,7 @@ public class Game {
         animal.get(square).getCard();
     }
     
-
+    public int cost(){
+        return animal.get(1).getCost();
+    }
 }

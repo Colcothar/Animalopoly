@@ -24,13 +24,32 @@ class main {
         ArrayList<Player> player = new ArrayList<>();
         
         for(int x=0; x<26; x++ ){
-             animal.add( new Animals(animals[x],cost[x],0));
+             animal.add( new Animals(animals[x],cost[x]));
         }
         
         Game game = new Game(animal, player);
         numOfPlayers = game.numOfPlayer();
         
+        
         for(int x=0; x< numOfPlayers;x++){
             player.add( new Player(x));
+            System.out.println(x);
         }
         
+        
+        game.move(0, 10);
+        
+        
+        
+        
+        
+ 
+        
+        
+        
+   
+       
+
+        }
+}
+

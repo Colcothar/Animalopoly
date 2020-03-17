@@ -9,12 +9,10 @@ public class Player {
     private final String name, piece;
     private final int playerID;
     private int position, missTurn, bankrupt;
-    private double money;
     
     //Initiailise class 
     public Player (int playerID){
         this.playerID = playerID;
-        this.money = 50;
         this.position = 0;
         this.missTurn = 2;
         this.bankrupt = 1;
@@ -25,6 +23,7 @@ public class Player {
         name = s.nextLine(); //scan input 
         System.out.println("Enter a charachter to use as a piece");
         piece = s.nextLine(); //scan input 
+
     }        
     
     //Misc Functions
@@ -38,10 +37,39 @@ public class Player {
     public int getPosition(){return position;}
     public int getMissTurn(){return missTurn;}
     public int getBankrupt(){return bankrupt;}
+    public int getMoney(){
+        return money;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getPiece(){
+        return piece;
+    }
+    public int getPlayerID(){
+        return playerID;
+    }
+    public int getPosition(){
+        return position;
+    }
+    public int getMissTurn(){
+        return missTurn;
+    }
+    public int getBankrupt(){
+        return bankrupt;
+    }
     
     //Setters
     public void setPosition(int pos){position = pos;}
     public void setMissTurn(){missTurn = 2;}
     public void setBankrupt(){bankrupt = 0;}
+    public void setPosition(int pos){
+        position = pos;
+    }
+    public void setMissTurn(){
+        missTurn = 2;
+    }
+    public void setBankrupt(){
+        bankrupt = 0;}
     
 }

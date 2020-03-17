@@ -10,22 +10,21 @@
  */
 public class Animals {
     private String name;
-    private final double cost; 
-    private final double[] stopCost={0,0,0,0};
-    private int stopLevel,owner;
+    private final int cost; 
+    private final int [] stopCost={0,0,0,0};
+    private int stopLevel,owner=-1;
             
-    public Animals(String name,int cost,int playerID){
+    public Animals(String name,int cost){
         stopLevel=0;
-        owner=playerID;
         this.name = name;
         this.cost = cost;
         generateStopCost();
         }        
            
     public final void generateStopCost(){
-        stopCost[0]=(cost*0.1);
-        stopCost[1]=(cost*0.3);
-        stopCost[2]=(cost*0.7);
+        stopCost[0]=(int) (cost*0.1);
+        stopCost[1]=(int) (cost*0.3);
+        stopCost[2]=(int) (cost*0.7);
         stopCost[3]=(cost*1);
                 
     }        
@@ -36,6 +35,29 @@ public class Animals {
         }
     }
     
+    public void getCard(){
+        System.out.println("|-------------------------|");
+        System.out.println("    " + name);
+        System.out.println(" Level: " + stopLevel);
+        for(int x =0; x<4; x++){
+            System.out.println(" Level " + x + " stop: " + stopCost[x]);
+        }
+        System.out.println(" Cost: " + cost);
+        if(owner==-1){
+            System.out.println(" Not Owned");
+        }
+        else{
+            System.out.println(" Owned by player " + owner);
+        }
+        System.out.println("|-------------------------|");
+        
+    }
+    
+    public void setOwner(int owner){
+        this.owner = owner;
+    }
+    
+    
     public String getAnimal(){
         return name;
     }
@@ -44,7 +66,11 @@ public class Animals {
         return stopLevel;
     }
     
-    public double getCost(){
+    public int getCost(){
+        return cost;
+    }
+    
+    public int getStopCost(){
         return stopCost[stopLevel];
     }
     
@@ -53,16 +79,8 @@ public class Animals {
     }
     
     public void reset(){
-        
-        for(int x = 0; x<4;x++){
-            stopCost[x]=0;
-        }
-        name="";
-        owner=0;
+        owner=-1;
         stopLevel=0;
-    }
-    
-    
-    
+    }   
 }
 
