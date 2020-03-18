@@ -65,6 +65,7 @@ public class Game {
                 upgrade(square, playerID);
             }
             else if(owner==-1){
+                
                 //code to buy animal
                 //set new owner
                 //take money 
@@ -99,7 +100,6 @@ public class Game {
                     System.out.println("You do not have sufficent funds to upgrade");
                 }
                 else{
-                    player.get(playerID).addMoney(-upgradeCost);
                     animal.get(square).upgrade();
                 }
             }

@@ -8,7 +8,6 @@ public class Player {
     //Initialise variables
     private final String name, piece;
     private final int playerID;
-    private int position, missTurn, bankrupt,money;
     
     //Initiailise class 
     public Player (int playerID){
