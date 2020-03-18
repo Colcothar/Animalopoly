@@ -52,11 +52,6 @@ public class Player {
         return bankrupt;
     }
     
-    //Setters
-    public void addMoney(int add){
-        money = money + add;
-    }
-    
     public void setPosition(int pos){
         position = pos;
     }
