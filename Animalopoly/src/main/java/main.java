@@ -15,7 +15,7 @@ class main {
         
         String animals[]={"0","Dog","Cat","Fish","Parrot","Cow","Goat","Sheep","Chicken","Pig","Geese","Fox","Dingo","0","Octopus","Doplhin","Whale","Narwhale","Flamingo", "Panda","Rhino","Giraffe","Cheetah","Elephant","Tiger","lion"};
         int cost[]={0,20,30,50,60,100,120,140,200,250,260,300,350,0,390,410,460,500,510,560,600,640,670,700,800,850} ;   
-        int numOfPlayers;
+        int numOfPlayers,total;
 
         Scanner reader = new Scanner(System.in);       
      
@@ -36,9 +36,32 @@ class main {
             System.out.println(x);
         }
         
+        total = numOfPlayers;
         
-        game.move(0, 10);
-        
+        while(total>1){
+            for(int x=0; x< numOfPlayers;x++){
+                int Bankrupt = player.get(x).getBankrupt(), missTurn = player.get(x).getMissTurn();
+                
+                if((Bankrupt==1) && (0==missTurn)){
+                    System.out.println("Ready " + player.get(x).getName() + "?");
+                    String name ="";
+                    name = reader.nextLine();
+                    game.move(x,10);
+                }
+            }
+            
+            total=0;
+            for(int x=0; x< numOfPlayers;x++){
+                total+= player.get(x).getBankrupt();
+                player.get(x).missTurn();
+            } 
+        }
+            
+        for(int x=0; x< numOfPlayers;x++){
+            if(player.get(x).getBankrupt()==1){
+                System.out.println("Congrats " + player.get(x).getName() + " you won!");
+            }                        
+        }
         
         
         

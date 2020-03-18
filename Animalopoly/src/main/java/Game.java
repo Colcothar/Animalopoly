@@ -40,11 +40,13 @@ public class Game {
         
         temp = player.get(playerID).getPosition() + roll;
         
-        System.out.println(temp);
+        System.out.println("Temp location" + temp);
         
         money = checkSquare(temp, playerID); //checks if passed start. Works out the money given
-        player.get(playerID).addMoney(money); // adds the money given to player.
+        player.get(playerID).adjustMoney(money); // adds the money given to player.
         
+        
+        System.out.println("");
         square = player.get(playerID).getPosition(); //gets player position on the board
         
         
@@ -52,7 +54,7 @@ public class Game {
         noAnimal=CheckForAnimal(playerID); //checks if the player is on a miss turn or start
         
         
-        if(noAnimal==1){
+        if(noAnimal==1){ // if on miss turn or start
             
         }
         else{ // if not on miss turn or start
@@ -72,11 +74,54 @@ public class Game {
                 
             }
             else{
-                //pay who ever owns the animal 
+                payStopCost(playerID,square,owner);
             }
+                  
             
             
-        }        
+            
+        } 
+        
+        
+        //checks if got double
+        //gives card and sort out money
+        
+        
+        if(checkBankruptcy(playerID)){
+            System.out.println("Uh oh, you have " + player.get(playerID).getMoney() );
+            System.out.println("You've gone bankrupt!");
+            System.out.println("Thanks for playing, you've been retired from the game.");
+            fileBankruptcy(playerID);                                                        
+        }
+        
+    }
+    
+    public void payStopCost(int playerID, int square, int owner){
+        int moneyToPay = animal.get(square).getStopCost();
+        
+        player.get(playerID).adjustMoney(-moneyToPay);
+        player.get(owner).adjustMoney(moneyToPay);
+        
+        
+    }
+    
+    public void fileBankruptcy(int playerID){
+        for(int x =0; x<26; x++){
+            if((animal.get(x).getOwner())==playerID){
+                animal.get(x).reset();
+            } 
+        }
+    }
+    
+    public boolean checkBankruptcy(int playerID){
+        int money = money = player.get(playerID).getMoney();
+        if(money<0){
+            player.get(playerID).setBankrupt();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     public void upgrade(int square, int playerID){
@@ -100,6 +145,7 @@ public class Game {
                     System.out.println("You do not have sufficent funds to upgrade");
                 }
                 else{
+                    player.get(playerID).adjustMoney(-upgradeCost);
                     animal.get(square).upgrade();
                 }
             }
@@ -110,11 +156,14 @@ public class Game {
     public int CheckForAnimal(int playerID){
         int pos = player.get(playerID).getPosition();
         
-        if(pos==0||pos==13){
-            return 1;
-        }
-        else{
-            return 0;
+        switch (pos) {
+            case 0:
+                return 1;
+            case 13:
+                player.get(playerID).setMissTurn(); //sets a miss turn
+                return 1;
+            default:
+                return 0;
         }
         
     }
@@ -133,8 +182,8 @@ public class Game {
         }
         else if(temp>25){
             System.out.println("You pass start and earnh £500");
-            player.get(playerNum).setPosition(temp); 
             temp = temp-26;
+            player.get(playerNum).setPosition(temp);            
             return 500;
         }
         else{

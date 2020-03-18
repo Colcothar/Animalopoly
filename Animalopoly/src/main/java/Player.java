@@ -8,6 +8,7 @@ public class Player {
     //Initialise variables
     private final String name, piece;
     private final int playerID;
+    private int position, missTurn, bankrupt,money=0;
     
     //Initiailise class 
     public Player (int playerID){
@@ -52,6 +53,7 @@ public class Player {
         return bankrupt;
     }
     
+    //Setters  
     public void setPosition(int pos){
         position = pos;
     }
