@@ -85,6 +85,7 @@ public class Game {
                             animal.get(square).setOwner(playerID);
                             //take money 
                             player.get(playerID).adjustMoney(-(animal.get(square).getCost()));
+                            System.out.println("You now have £" + player.get(playerID).getMoney());
                         } else {
                             System.out.println("Sorry you don't have enough money to buy this animal");
                         }
@@ -121,6 +122,8 @@ public class Game {
         
         if(noAnimal!=1){ // if not on miss turn or start
             animalBuy(square, playerID);
+            
+            
         }
         
         if(checkBankruptcy(playerID)){
@@ -137,6 +140,7 @@ public class Game {
         
         player.get(playerID).adjustMoney(-moneyToPay);
         player.get(owner).adjustMoney(moneyToPay);
+        System.out.println("You now have £" + player.get(playerID).getMoney());
     }
     
     public void fileBankruptcy(int playerID){

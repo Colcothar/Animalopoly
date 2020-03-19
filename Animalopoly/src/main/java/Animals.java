@@ -47,11 +47,21 @@ public class Animals {
     public void setOwner(int owner){this.owner = owner;}
 
     //Getters
-    public String getAnimal(){return name;}
-    public int getStopLevel(){return stopLevel;}
-    public int getCost(){return cost;}
-    public int getStopCost(){return stopCost[stopLevel];}
-    public int getOwner(){return owner;}
+    public String getAnimal(){
+        return name;
+    }
+    public int getStopLevel(){
+        return stopLevel;
+    }
+    public int getCost(){
+        return cost;
+    }
+    public int getStopCost(){
+        return stopCost[stopLevel];
+    }
+    public int getOwner(){
+        return owner;
+    }
     
     //Reset
     public void reset(){
