@@ -18,8 +18,7 @@ class main {
         int numOfPlayers,total;
 
         Scanner reader = new Scanner(System.in);       
-     
-        
+
         ArrayList<Animals> animal = new ArrayList<>();
         ArrayList<Player> player = new ArrayList<>();
         
@@ -30,10 +29,9 @@ class main {
         Game game = new Game(animal, player);
         numOfPlayers = game.numOfPlayer();
         
-        
         for(int x=0; x< numOfPlayers;x++){
             player.add( new Player(x));
-            System.out.println(x);
+            System.out.println("You are player number " + x);
         }
         
         total = numOfPlayers;
@@ -41,15 +39,15 @@ class main {
         while(total>1){
             for(int x=0; x< numOfPlayers;x++){
                 int Bankrupt = player.get(x).getBankrupt(), missTurn = player.get(x).getMissTurn();
+                int roll;
                 
                 if((Bankrupt==1) && (0==missTurn)){
-                    System.out.println("Ready " + player.get(x).getName() + "?");
-                    String name ="";
-                    name = reader.nextLine();
-                    game.move(x,10);
+                    System.out.println("\n\n\n");
+                    System.out.println(player.get(x).getName() + "'s turn");
+                    
+                    game.move(x);
                 }
             }
-            
             total=0;
             for(int x=0; x< numOfPlayers;x++){
                 total+= player.get(x).getBankrupt();
@@ -62,17 +60,6 @@ class main {
                 System.out.println("Congrats " + player.get(x).getName() + " you won!");
             }                        
         }
-        
-        
-        
-        
- 
-        
-        
-        
-   
-       
-
-        }
+    }
 }
 
