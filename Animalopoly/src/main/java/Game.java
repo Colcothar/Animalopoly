@@ -1,13 +1,10 @@
 import java.util.*;
 
-
-
 public class Game {
     
     //Init classes
     Dice dice = new Dice();
     Cards cards = new Cards();
-    
     
     private ArrayList<Animals> animal = new ArrayList<>();
     private ArrayList<Player> player = new ArrayList<>();
@@ -31,10 +28,6 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
      }
-    
-    public void loadingAnimation() {
-         
-    }
     
     public void checkDouble(int playerID) {
         //Init vars
@@ -122,8 +115,6 @@ public class Game {
         
         if(noAnimal!=1){ // if not on miss turn or start
             animalBuy(square, playerID);
-            
-            
         }
         
         if(checkBankruptcy(playerID)){
