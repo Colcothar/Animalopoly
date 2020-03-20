@@ -26,13 +26,27 @@ public class Player {
     public void adjustMoney(double amount){money += amount;} //Add and remove money (negative val for remove)
     
     //Getters
-    public int getMoney(){return money;}
-    public String getName(){return name;}
-    public String getPiece(){return piece;}
-    public int getPlayerID(){return playerID;}
-    public int getPosition(){return position;}
-    public int getMissTurn(){return missTurn;}
-    public int getBankrupt(){return bankrupt;}
+    public int getMoney(){
+        return money;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getPiece(){
+        return piece;
+    }
+    public int getPlayerID(){
+        return playerID;
+    }
+    public int getPosition(){
+        return position;
+    }
+    public int getMissTurn(){
+        return missTurn;
+    }
+    public int getBankrupt(){
+        return bankrupt;
+    }
     
     //Setters  
     public void setPosition(int pos){position = pos;}

@@ -31,7 +31,7 @@ class main {
         
         for(int x=0; x< numOfPlayers;x++){
             player.add( new Player(x));
-            System.out.println("You are player number " + x);
+            System.out.println("You are player number " + x + "\n");
         }
         
         total = numOfPlayers;
@@ -42,7 +42,7 @@ class main {
                 int roll;
                 
                 if((Bankrupt==1) && (0==missTurn)){
-                    System.out.println("\n\n\n");
+                    System.out.println("\n\n");
                     System.out.println(player.get(x).getName() + "'s turn");
                     
                     game.move(x);
